@@ -14,7 +14,7 @@ public abstract class Product {
 
         if (name == null || name.equals("")) throw new IllegalArgumentException();
         this.name = name;
-        
+
         this.price = price;
         this.taxPercent = tax;
     }
