@@ -15,12 +15,12 @@ public class Invoice {
     }
 
     public void addProduct(Product product) {
-        if (product== null) throw new IllegalArgumentException();
+        if (product== null ) throw new IllegalArgumentException();
         products.add(product);
     }
 
     public void addProduct(Product product, Integer quantity) {
-        if (quantity == 0) throw new IllegalArgumentException();
+        if (quantity <= 0) throw new IllegalArgumentException();
 
         for (int i = 0; i < quantity; i++) {
             products.add(product);
