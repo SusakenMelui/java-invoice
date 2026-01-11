@@ -48,7 +48,7 @@ public class Invoice {
 
     public BigDecimal getTotal() {
 
-        
+
         return getTax().add(getSubtotal());
 
     }
