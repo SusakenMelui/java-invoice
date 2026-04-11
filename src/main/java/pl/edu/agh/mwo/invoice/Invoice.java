@@ -10,8 +10,14 @@ public class Invoice {
     private Collection<Product> products;
 
 
+    static int NUMBER = 0;
+
+
+    private int number;
+
     public Invoice() {
         products = new ArrayList<>();
+        number = NUMBER++;
     }
 
     public void addProduct(Product product) {
@@ -55,5 +61,11 @@ public class Invoice {
 
         return getTax().add(getSubtotal());
 
+    }
+
+
+
+    public int getNumber() {
+    return number;
     }
 }

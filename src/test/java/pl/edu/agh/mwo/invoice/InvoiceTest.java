@@ -125,4 +125,32 @@ public class InvoiceTest {
     public void testAddingNullProduct() {
         invoice.addProduct(null);
     }
+
+    @Test
+    public void testInvoiceHasNumberGreaterThanZero() {
+        int number = new Invoice().getNumber();
+        Assert.assertThat(number, Matchers.greaterThan(0));
+    }
+
+    @Test
+    public void testTwoInvoicesDontHaveTheSameNumber() {
+        Invoice invoice1 = new Invoice();
+        Invoice invoice2 = new Invoice();
+
+        Assert.assertThat(invoice1.getNumber(), Matchers.not(invoice2.getNumber()));
+    }
+
+    @Test
+    public void testNextInvoiceNumberIsAlwaysGreaterByOneThenPreviousInvoiceNumber() {
+        Invoice invoice_1 = new Invoice();
+        Invoice invoice_2 = new Invoice();
+        Assert.assertEquals(invoice_1.getNumber(), invoice_2.getNumber()-1);
+    }
+
+    @Test
+    public void testInvoiceHasAlwaysTheSameNumber() {
+        Invoice invoice1 = new Invoice();
+        Assert.assertThat(invoice1.getNumber(), Matchers.is(invoice1.getNumber()));
+    }
+
 }
