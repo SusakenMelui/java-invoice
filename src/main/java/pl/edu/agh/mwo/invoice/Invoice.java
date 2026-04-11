@@ -13,11 +13,15 @@ public class Invoice {
     static int NUMBER = 0;
 
 
-    private int number;
+    private final int number;
 
     public Invoice() {
         products = new ArrayList<>();
         number = NUMBER++;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public void addProduct(Product product) {
@@ -64,8 +68,4 @@ public class Invoice {
     }
 
 
-
-    public int getNumber() {
-    return number;
-    }
 }
