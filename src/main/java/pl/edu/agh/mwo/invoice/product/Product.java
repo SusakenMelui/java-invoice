@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo.invoice.product;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public abstract class Product {
     private final String name;
@@ -38,5 +39,25 @@ public abstract class Product {
 
     public BigDecimal getPriceWithTax() {
         return this.price.add(this.price.multiply(this.taxPercent));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (!name.equals(product.name)) return false;
+        if (!price.equals(product.price)) return false;
+        return Objects.equals(taxPercent, product.taxPercent);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + (taxPercent != null ? taxPercent.hashCode() : 0);
+        return result;
     }
 }

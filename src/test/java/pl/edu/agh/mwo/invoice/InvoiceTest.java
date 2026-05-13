@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.junit.experimental.theories.suppliers.TestedOn;
 import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
@@ -181,6 +182,35 @@ public class InvoiceTest {
         invoice.addProduct(new OtherProduct("Pinezka", new BigDecimal("0.01")), 1000);
         Assert.assertEquals(expected, invoice.invoicePrintScreen());
 
+    }
+
+    @Test
+    public void testInvoiceCanAddingTheSameProducts(){
+
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 8);
+
+        String actual = invoice.productAsString();
+        String expected = "Chleb;10;5\n";
+
+        Assert.assertEquals(expected, actual);
+
+
+    }
+
+
+    @Test()
+    public void testInvoiceCanAddDifferentProducts(){
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("4")), 8);
+
+        String actual = invoice.productAsString();
+
+
+        String expected = "Chleb;2;5\n" +
+                          "Chleb;8;4\n";
+
+        Assert.assertEquals(expected, actual);
     }
 
 
