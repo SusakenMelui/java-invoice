@@ -9,7 +9,6 @@ import pl.edu.agh.mwo.invoice.product.InvoiceItem;
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
-//    private Collection<Product> products;
 
     private List<InvoiceItem> products;
 
@@ -64,22 +63,26 @@ public class Invoice {
         return subtotal;
     }
 
-//    public BigDecimal getTax() {
-//
-//        BigDecimal taxes = BigDecimal.ZERO;
-//        for (Product product : products) {
-//            BigDecimal tax = product.getPrice().multiply(product.getTaxPercent());
-//            taxes = taxes.add(tax);
-//        }
-//        return taxes;
-//    }
+    public BigDecimal getTax() {
 
-//    public BigDecimal getTotal() {
-//
-//
-//        return getTax().add(getSubtotal());
-//
-//    }
+        BigDecimal taxes = BigDecimal.ZERO;
+
+        for (InvoiceItem item : products) {
+            BigDecimal tax = item.getProduct().getPrice().multiply(item.getProduct().getTaxPercent())
+                    .multiply(BigDecimal.valueOf(item.getQuantity()));
+
+
+            taxes = taxes.add(tax);
+        }
+        return taxes;
+    }
+
+    public BigDecimal getTotal() {
+
+
+        return getTax().add(getSubtotal());
+
+    }
 
 
 }
