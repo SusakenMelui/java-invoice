@@ -100,6 +100,9 @@ public class Invoice {
     }
 
 
+    public String invoicePrintScreen() {
+        return null;
+    }
 }
 
 
