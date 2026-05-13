@@ -68,7 +68,8 @@ public class Invoice {
         BigDecimal taxes = BigDecimal.ZERO;
 
         for (InvoiceItem item : products) {
-            BigDecimal tax = item.getProduct().getPrice().multiply(item.getProduct().getTaxPercent())
+            BigDecimal tax = item.getProduct().getPrice()
+                    .multiply(item.getProduct().getTaxPercent())
                     .multiply(BigDecimal.valueOf(item.getQuantity()));
 
 
