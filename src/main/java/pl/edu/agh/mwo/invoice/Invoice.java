@@ -3,11 +3,15 @@ package pl.edu.agh.mwo.invoice;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import pl.edu.agh.mwo.invoice.product.InvoiceItem;
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
-    private Collection<Product> products;
+//    private Collection<Product> products;
+
+    private List<InvoiceItem> products;
 
 
     static int NUMBER = 0;
@@ -28,7 +32,7 @@ public class Invoice {
         if (product == null) {
             throw new IllegalArgumentException();
         }
-        products.add(product);
+        addProduct(product, 1);
     }
 
     public void addProduct(Product product, Integer quantity) {
@@ -36,36 +40,48 @@ public class Invoice {
             throw new IllegalArgumentException();
         }
 
-        for (int i = 0; i < quantity; i++) {
-            products.add(product);
+        for (InvoiceItem item : products) {
+
+            if (item.getProduct().getName().equals(product.getName())) {
+                item.addMoreProduct(quantity);
+                return;
+            }
         }
+        products.add((new InvoiceItem(product, quantity)));
     }
 
     public BigDecimal getSubtotal() {
+
         BigDecimal subtotal = BigDecimal.ZERO;
-        for (Product product : products) {
-            subtotal = subtotal.add(product.getPrice());
+
+        for (InvoiceItem item : products) {
+            BigDecimal price =
+                    item.getProduct().getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
+
+            subtotal = subtotal.add(price);
         }
 
         return subtotal;
     }
 
-    public BigDecimal getTax() {
+//    public BigDecimal getTax() {
+//
+//        BigDecimal taxes = BigDecimal.ZERO;
+//        for (Product product : products) {
+//            BigDecimal tax = product.getPrice().multiply(product.getTaxPercent());
+//            taxes = taxes.add(tax);
+//        }
+//        return taxes;
+//    }
 
-        BigDecimal taxes = BigDecimal.ZERO;
-        for (Product product : products) {
-            BigDecimal tax = product.getPrice().multiply(product.getTaxPercent());
-            taxes = taxes.add(tax);
-        }
-        return taxes;
-    }
-
-    public BigDecimal getTotal() {
-
-
-        return getTax().add(getSubtotal());
-
-    }
+//    public BigDecimal getTotal() {
+//
+//
+//        return getTax().add(getSubtotal());
+//
+//    }
 
 
 }
+
+

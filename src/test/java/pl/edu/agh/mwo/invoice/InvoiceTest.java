@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -152,5 +153,17 @@ public class InvoiceTest {
         Invoice invoice1 = new Invoice();
         Assert.assertThat(invoice1.getNumber(), Matchers.is(invoice1.getNumber()));
     }
+
+
+//    @Test
+//    public void testInvoiceCanDOproductsAsString() {
+//        String s = "Chleb;2;5\nChedar;3;10\nPinezka;1000;0.01";
+//        invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
+//        invoice.addProduct(new DairyProduct("Chedar", new BigDecimal("10")), 3);
+//        invoice.addProduct(new OtherProduct("Pinezka", new BigDecimal("0.01")), 1000);
+//        Assert.assertEquals(s, invoice.listOfProduct());
+//
+//
+//    }
 
 }
