@@ -41,7 +41,7 @@ public class Invoice {
 
         for (InvoiceItem item : products) {
 
-            if (item.getProduct().getName().equals(product.getName())) {
+            if (item.getProduct().equals(product)) {
                 item.addMoreProduct(quantity);
                 return;
             }
