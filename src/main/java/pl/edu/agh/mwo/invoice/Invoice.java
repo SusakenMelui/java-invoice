@@ -85,6 +85,9 @@ public class Invoice {
     }
 
 
+    public String productAsString() {
+        return null;
+    }
 }
 
 
