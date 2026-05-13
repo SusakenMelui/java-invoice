@@ -43,13 +43,21 @@ public abstract class Product {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Product product = (Product) o;
 
-        if (!name.equals(product.name)) return false;
-        if (!price.equals(product.price)) return false;
+        if (!name.equals(product.name)) {
+            return false;
+        }
+        if (!price.equals(product.price)) {
+            return false;
+        }
         return Objects.equals(taxPercent, product.taxPercent);
     }
 

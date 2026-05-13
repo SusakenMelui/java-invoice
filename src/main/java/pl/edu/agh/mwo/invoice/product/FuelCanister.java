@@ -11,6 +11,7 @@ public class FuelCanister extends Product {
     protected FuelCanister(String name, BigDecimal price) {
         super(name, price, new BigDecimal(BigInteger.ZERO));
     }
+
     public BigDecimal getExcise() {
         return excise;
     }

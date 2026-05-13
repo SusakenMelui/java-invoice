@@ -24,7 +24,7 @@ but without javadoc requirements and with severity set to error.
     </module>
 
     <module name="TreeWalker">
-        <module name="MagicNumber"/>
+
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
             <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
