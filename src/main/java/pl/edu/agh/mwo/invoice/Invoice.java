@@ -86,8 +86,20 @@ public class Invoice {
 
 
     public String productAsString() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+
+        for (InvoiceItem item : products) {
+            sb.append(item.getProduct().getName())
+                    .append(";")
+                    .append(item.getQuantity())
+                    .append(";")
+                    .append(item.getProduct().getPrice())
+                    .append("\n");
+        }
+        return sb.toString();
     }
+
+
 }
 
 

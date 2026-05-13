@@ -159,7 +159,7 @@ public class InvoiceTest {
     public void testInvoiceCanDoProductsAsString() {
         String expected = "Chleb;2;5\n" +
                           "Chedar;3;10\n" +
-                          "Pinezka;1000;0.01";
+                          "Pinezka;1000;0.01\n";
         invoice.addProduct(new TaxFreeProduct("Chleb", new BigDecimal("5")), 2);
         invoice.addProduct(new DairyProduct("Chedar", new BigDecimal("10")), 3);
         invoice.addProduct(new OtherProduct("Pinezka", new BigDecimal("0.01")), 1000);
