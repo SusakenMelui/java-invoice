@@ -102,7 +102,13 @@ public class Invoice {
 
 
     public String invoicePrintScreen() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Numer faktury: " + getNumber() + "\n")
+                .append(productAsString())
+                .append("Liczba pozycji: ").append(products.size());
+
+        return sb.toString();
     }
 }
 
